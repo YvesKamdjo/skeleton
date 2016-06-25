@@ -1,0 +1,80 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"> Dr Marie JOURDAN</a>
+
+        </div>
+        <div id="navbar" class="navbar-collapse collapse w3-text-white">
+
+            <ul class="nav navbar-nav navbar-left w3-text-white">
+
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <!--{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}-->
+                    <li class="dropdown w3-hover-text-white">
+
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="w3-hover-white">
+                            <i class="fa fa-user"></i>  {{ 'user.say.hello'|trans|upper}} {{   app.user.username|upper }} <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="w3-left w3-hover-text-white">
+                                <a href="{{ path('fos_user_profile_edit') }}" class="w3-hover-white">
+                                    <i class="fa fa-user"></i> {{ 'user.my.account'| trans|upper  }}
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+
+
+                    {% if is_granted("ROLE_ADMIN") %}
+                        <li class="dropdown w3-hover-text-white">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="w3-text-white"><i class="fa fa-th-large"></i> {{ 'word.administration'|trans|upper }} <i class="fa fa-caret-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ path('sonata_admin_dashboard') }}" ><i class="fa fa-th-large"></i> {{ 'word.administration'|trans|upper }}</a></li>
+                                <li><a href="{{ path('nemo_admin_panel') }}" ><i class="fa fa-users"></i> {{ 'nemo.user.management'|trans|upper }}</a></li>
+                            </ul>
+                        </li>
+
+                    {% endif %}
+
+                    <li class="w3-left w3-hover-text-white">
+                        <a href="{{ path('fos_user_security_logout') }}" class="w3-text-white">
+                            <i class="fa fa-power-off w3-text-white"></i>&nbsp;{{ 'user.quit'|trans|upper }}</a>
+                        </a>
+                    </li>
+                {% endif %}
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right w3-text-white">
+                <li><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}">
+                        {% image '@AppBundle/Resources/public/images/fr.png' %}
+                        <img class="featurette-image img-responsive left-side w3-round pull-left"  src="{{ asset_url }}" alt="Français"  />
+                        {% endimage %}
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{  path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'}))}}">
+                        {% image '@AppBundle/Resources/public/images/gb.png' %}
+                        <img class="featurette-image img-responsive left-side w3-round pull-left"  src="{{ asset_url }}" alt="English" />
+                        {% endimage %}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!--ul class="w3-navbar w3-light-grey w3-border w3-large">
+    <li><a class="w3-green" href="#"><i class="fa fa-home w3-large"></i></a></li>
+    <li><a href="#"><i class="fa fa-search w3-large"></i></a></li>
+    <li><a href="#"><i class="fa fa-envelope w3-large"></i></a></li>
+    <li><a href="#"><i class="fa fa-globe w3-large"></i></a></li>
+    <li><a href="#"><i class="fa fa-sign-in w3-large"></i></a></li>
+</ul-->

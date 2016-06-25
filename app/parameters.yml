@@ -1,0 +1,25 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: mariejourdan
+    database_user: root
+    database_password: null
+    database_path: null
+    phpcr_backend:
+        type: doctrinedbal
+        connection: default
+        caches:
+            meta: doctrine_cache.providers.phpcr_meta
+            nodes: doctrine_cache.providers.phpcr_nodes
+    phpcr_workspace: default
+    phpcr_user: admin
+    phpcr_password: admin
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: ThisTokenIsNotSoSecretChangeIt
+    debug_toolbar: true
+    debug_redirects: false
+    use_assetic_controller: true
